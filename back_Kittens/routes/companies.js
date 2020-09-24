@@ -42,7 +42,7 @@ router.post('/insert', function(req, res, next){
     }
     else{
 
-        dbManager.InsertCompanie(data, function(response){
+        dbManager.InsertCompanie(data_insert, function(response){
             res.send(response)
         })
 
@@ -62,7 +62,7 @@ router.patch('/update', function(req,res,next){
     })
 })
 
-// GET buscar compania por la descripcion
+// GET buscar companie por la descripcion
 router.get('/search', function(req, res, next){
     var tosearch = req.query.search;
     if (tosearch.length < 3){
