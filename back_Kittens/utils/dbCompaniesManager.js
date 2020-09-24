@@ -1,34 +1,7 @@
-var {db} = require("./dbconnect");
+var {queryexecution} = require("./dbconnect");
 var moment = require("moment");
 
-//
-/**
- * Funcion declarada para el uso de querys y no repetir código.
- * 
- * @param {String} query Query SQL que se ejecutará para la correcta petición
- * @param {Array} data  Array de datos que se insertarán, se actualizarán o condiciones de busqueda
- * @param {callback} callback funcion asincrona para cuando se complete la operación
- */
-function queryexecution ( query, data , callback){
-    var response_json = { code: 200, status: "OK"}
-    
-    db.query(query, data, function (err, result, field) {
-        
-        // Si la query es un select se añade el resultado en data
-        if (query.substring(0, 6) === "SELECT") {
-            response_json.data = result;
-        }
 
-        if (!err) {
-            return callback(response_json);
-        }
-        else {
-            console.log(err);
-            return callback({ code: 400, status: "ERROR", error: { error_code: err.code, error_info: err.sqlMessage } });
-        }
-    })
-
-}
 /**
  * Método para insertar en la base de datos los datos de las empresas.
  * Si se intenta insertar un CIF repetido se devolverá el error de que no se puede insertar, debido a que 
@@ -51,7 +24,7 @@ function InsertCompanie (data, handleInsert){
         data.date,
         data.status,
         data.logo,
-        Math.random().toString(36).substring(5) //para token aleatorio en base 36 considera a-z y de 0-9
+        Math.random().toString(36).substring(6) //para token aleatorio en base 36 considera a-z y de 0-9
         ], function (response_insert) {
             return handleInsert(response_insert);
     });
@@ -132,13 +105,13 @@ function ListPageCompanies(page,handleListPage){
     var fin_page = page * 20 - 1; 
 
     queryexecution(query_list_page, [init_page, fin_page], function( resp_list_page){
-        console.log(resp_list_page.data.length);
         if (resp_list_page.data.length > 0)
             handleListPage(resp_list_page);
         else
             handleListPage({code: 404, error: "No esxisten tantos elementos"});
     })
 }
+
 
 /**
  * Funcion para buscar, si no llega a 3 elementos mínimo se almacenara en el log como peticion potencialmente peligrosa.
@@ -154,6 +127,18 @@ function SearchCompanie(tosearch, handleSearch){
         })
 }
 
+/**
+ * Funcion para comprobar que una empresa existe
+ * @param {int} id identificador de la empresa, par comprobar que exista 
+ * @param {callback} handleExist 
+ */
+function ExistCompanie(id, handleExist){
+    var query_exist = "SELECT count(*) as count  from companies where id=? ;"
+
+    queryexecution(query_exist, [id], function (resp_exist) {
+        return handleExist(resp_exist);
+    })
+}
 
 
 
@@ -162,5 +147,6 @@ module.exports = {
     ListAllCompanies, 
     ListPageCompanies,
     UpdateCompanie,
-    SearchCompanie
+    SearchCompanie, 
+    ExistCompanie
 };
