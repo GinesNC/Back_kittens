@@ -10,8 +10,6 @@ logger.prototype.log = function(data){
     fs.appendFile(logfile,
         moment().format('DD/MM/YYYY HH:mm:ss') + ' --> [Potencial ataque] ' + data +"\n", function (err) {
         if (err) console.log(err);
-
-        // res.send('');
     })
 }
 
