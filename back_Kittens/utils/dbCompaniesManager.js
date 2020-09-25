@@ -66,16 +66,24 @@ function UpdateCompanie(data, handleUpdate){
                 if (key !== 'id' && key !== 'authorization'){
                     columns = columns + key + "=?, " //Se almacenan todas las columnas que se van a modificar, excepto id y token.
                     
+                    values_json_data.push(data[key])
                 }
+                
 
-                values_json_data.push(data[key])
+                
             }
-            //la funcion slice se utiliza para eliminar la coma (,) de la última key. Para que no se produzca el error: ER_PARSE_ERROR en mysql
-            var query_update = "UPDATE companies SET "+ columns.slice(0,-2) +" WHERE id=? and token = ? ;"
+            //añadir id y token al final
+            values_json_data[keys_json_data.length-2]=data.id
+            values_json_data[keys_json_data.length - 1] = data.authorization
+            if (values_json_data.length > 2){
+                //la funcion slice se utiliza para eliminar la coma (,) de la última key. Para que no se produzca el error: ER_PARSE_ERROR en mysql
+                var query_update = "UPDATE companies SET "+ columns.slice(0,-2) +" WHERE id=? and token = ? ;"
 
-            queryexecution(query_update, values_json_data,function(response_update){
-                return handleUpdate(response_update);
-            })
+                queryexecution(query_update, values_json_data,function(response_update){
+                    return handleUpdate(response_update);
+                })
+            }
+            else return handleUpdate({ error: "No hay datos para modidcar" });
         }
     }
 }
