@@ -6,6 +6,9 @@ var logger = function() {};
 
 logger.prototype.log = function(data){
     data = data.toString();
+    if (!fs.existsSync('logs')) {
+        fs.mkdirSync('logs');
+    }
 
     fs.appendFile(logfile,
         moment().format('DD/MM/YYYY HH:mm:ss') + ' --> [Potencial ataque] ' + data +"\n", function (err) {
