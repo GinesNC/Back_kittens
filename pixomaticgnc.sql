@@ -1,3 +1,7 @@
+
+
+CREATE DATABASE  IF NOT EXISTS `pixomaticgnc` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
 -- Crear usuario asociado a la base de datos -----
 
 create user pixomatic@localhost identified by 'pixomaticpass1.A';
@@ -6,7 +10,6 @@ grant all privileges on pixomaticgnc.* to 'pixomatic'@'localhost';
 FLUSH privileges;
 ---------------------------------------------------------
 
-CREATE DATABASE  IF NOT EXISTS `pixomaticgnc` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `pixomaticgnc`;
 -- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
 --
