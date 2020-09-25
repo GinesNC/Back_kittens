@@ -38,7 +38,7 @@ router.post('/insert', function(req, res, next){
     
         var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
         logger.logInsert(ip, data_insert)
-        res.send({ code: 401, status: "Unauthorized" });
+        res.send({ code: 401, status: "Unauthorized", msg_error:"missing or excess data or trying to add other prohibited data" });
     }
     else{
 
