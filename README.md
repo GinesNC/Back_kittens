@@ -4,6 +4,7 @@
 
         git clone https://github.com/GinesNC/Back_kittens.git
         cd Back_kittens/back_kittens
+        npm install
 
 Varias opciones para ejecutar (elegir 1 de estas 3, estando en el directorio correcto )
 
@@ -13,6 +14,25 @@ Varias opciones para ejecutar (elegir 1 de estas 3, estando en el directorio cor
 
 La creación de la base de datos y el usuario necesario, se puede realizar con ayuda del script: [pixomaticgnc.sql](https://github.com/GinesNC/Back_kittens/blob/master/pixomaticgnc.sql).
 
+## Rutas disponibles:
+
+Companies
+
+       Listar: /companies
+       Insertar: /companies/insert?name=<name>&email=<email>&CCC=<ccc>&CIF=<cif>&shortdesc=<shortdesc>&description=<description>&logo=<url logo>&date=<date>&status=0
+       Editar: /companies/update?<datos a modificar>&id=<id>&token=<token>
+       Buscar: /companies/search?search=<cadena a buscar>
+
+Owners
+
+        Listar: /owners
+                /owners?page=<n pag>
+        Info :  /owners/:id
+        Post del usuario: /owners/:id/post
+
+Favorites
+
+        Insertar fav: /favorites??companid=<id_companie>&ownerid=<id owner>
 
 ## Tareas desarrolladas
 Misión 1:
