@@ -11,7 +11,7 @@ Varias opciones para ejecutar (elegir 1 de estas 3, estando en el directorio cor
         nodemon
         node ./bin/www
 
-La creación de la base de datos se puede realizar con ayuda del script: [pixomaticgnc.sql](https://github.com/GinesNC/Back_kittens/blob/master/pixomaticgnc.sql), así como la configuración del usuario para acceder a dicha base de datos se puede ver en el archivo de configuracion de la base de datos.
+La creación de la base de datos y el usuario necesario, se puede realizar con ayuda del script: [pixomaticgnc.sql](https://github.com/GinesNC/Back_kittens/blob/master/pixomaticgnc.sql).
 
 
 ## Tareas desarrolladas
