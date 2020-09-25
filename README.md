@@ -19,7 +19,7 @@ La creación de la base de datos y el usuario necesario, se puede realizar con a
 Companies
 
        Listar: /companies
-       Insertar: /companies/insert?name=<name>&email=<email>&CCC=<ccc>&CIF=<cif>&shortdesc=<shortdesc>&description=<description>&logo=<url logo>&date=<date>&status=0
+       Insertar: /companies/insert?name=<name>&email=<email>&CCC=<ccc>&CIF=<cif>&shortdesc=<shortdesc>&description=<description>&logo=<url logo>&date=<date>&status=<status (0,1) --> (cerrado,abierto)>
        Editar: /companies/update?<datos a modificar>&id=<id>&token=<token>
        Buscar: /companies/search?search=<cadena a buscar>
 
@@ -32,7 +32,7 @@ Owners
 
 Favorites
 
-        Insertar fav: /favorites??companid=<id_companie>&ownerid=<id owner>
+        Insertar fav: /favorites?companid=<id_companie>&ownerid=<id owner>
 
 ## Tareas desarrolladas
 Misión 1:
